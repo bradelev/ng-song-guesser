@@ -20,17 +20,26 @@
           <div>Loading...</div>
         </ng-template>
       </div>
-      <div class="flex flex-col">
-        <div *ngFor="let song of (songs$ | async)">
-          <input
-            class="mr-2"
-            type="radio"
-            [value]="song.songId"
-            formControlName="songChoice"
-            [id]="'song-' + song.songId"
-            [disabled]="isGameOver"
-          />
-          <label [for]="'song-' + song.songId">{{ song.title }}</label>
+      <div class="flex flex-col gap-2">
+        <div class="w-full" *ngFor="let song of (songs$ | async)">
+          <div class="grid w-full">
+            <div class="inline-block radio">
+              <input
+                formControlName="songChoice"
+                type="radio"
+                [id]="'song-' + song.songId"
+                hidden="hidden"
+                [value]="song.songId"
+                [disabled]="isGameOver"
+              />
+              <label
+                [for]="'song-' + song.songId"
+                class="px-2 py-1 rounded-lg flex justify-center items-center"
+              >
+                {{ song.title }}
+              </label>
+            </div>
+          </div>
         </div>
       </div>
       <div class="flex items-center justify-between pt-4">
